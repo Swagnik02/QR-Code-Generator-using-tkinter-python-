@@ -31,17 +31,8 @@ def place_center():
     x = int((rx) - (500))
     y = int((ry/2) - (900/2))
 
-
     wn.geometry(f"400x616+{x}+{y}")
 place_center()
-
-# Function to move the window
-def move_window(event):
-    wn.geometry(f'+{event.x_root}+{event.y_root}')
-
-# Binding the events to the window
-# wn.bind('<Button-1>', move_window)
-# wn.bind('<B1-Motion>', move_window)
 
 # Function to generate the QR code and display it
 def generateCode():
@@ -98,6 +89,17 @@ def exit_window():
     wn.destroy()
 
 # FrontEnd
+# Fake Title Bar
+title_bar = Frame(wn, bg="white")
+title_bar.place(relx=0, rely=0, relwidth=1, relheight=0.07)
+
+# Function to move the window
+def move_app(e):
+    wn.geometry(f'+{e.x_root}+{e.y_root}')
+
+# Binding the function with drag
+title_bar.bind("<B1-Motion>", move_app)
+
 # Button to quit
 button_exit = Button(wn, text='X', relief="groove", font=(
     font_normal, 10), bg="#2B7DFA", fg="white", command=exit_window, bd=0)

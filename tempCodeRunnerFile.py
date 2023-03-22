@@ -1,2 +1,2 @@
-wn.bind('<Button-1>', move_window)
-# wn.bind('<B1-Motion>', move_window)
+title_label = Label(title_bar, text="hello" ,bg="darkgreen")
+# title_label.pack(pady=100)
