@@ -8,7 +8,7 @@ import pyautogui as pg
 # Creating the window
 wn = Tk()
 wn.title('URL QR Code Generator')
-wn.geometry('400x616')
+wn.geometry('400x616+0+0')
 wn.config(bg='white')
 wn.overrideredirect(True)
 
@@ -95,10 +95,19 @@ title_bar.place(relx=0, rely=0, relwidth=1, relheight=0.07)
 
 # Function to move the window
 def move_app(e):
-    wn.geometry(f'+{e.x_root}+{e.y_root}')
+    int_x=e.x_root
+    int_y=e.y_root
+
+    dx=int_x-title_bar.winfo_rootx()
+    dy=int_y-title_bar.winfo_rooty()
+    
+    print("dx=",dx)
+    print("dy=",dy)
+    print("---------------")
+    wn.geometry(f'+{dx}+{dy}')
 
 # Binding the function with drag
-title_bar.bind("<B1-Motion>", move_app)
+# title_bar.bind("<B1-Motion>", move_app)
 
 # Button to quit
 button_exit = Button(wn, text='X', relief="groove", font=(
