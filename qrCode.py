@@ -3,13 +3,41 @@ from tkinter import *
 from PIL import ImageTk, Image
 import tkinter.font as tkFont
 from tkinter import filedialog
+import pyautogui as pg
+
 
 # Creating the window
 wn = Tk()
 wn.title('URL QR Code Generator')
 wn.geometry('400x616')
 wn.config(bg='white')
-# wn.overrideredirect(True)
+wn.overrideredirect(True)
+
+# Placing the window in the center of the screen
+def place_center(): 
+    global x, y
+    reso = pg.size()
+    rx = reso[0]
+    ry = reso[1]
+    x = int((rx/2) - (500/2))
+    y = int((ry/2) - (500/2))
+    wn.geometry(f"400x616+{x}+{y}")
+    
+place_center()
+
+# def move_window(event):
+#     global x, y
+#     x = event.x_root - init_x
+#     y = event.y_root - init_y
+#     wn.geometry(f"+{x}+{y}")
+
+# def start_drag(event):
+#     global init_x, init_y
+#     init_x = event.x_root
+#     init_y = event.y_root
+
+# wn.bind("<Button-1>", start_drag)
+# wn.bind("<B1-Motion>", move_window)
 
 # Load Roboto font
 font_bold = tkFont.Font(family="Roboto", size=13, weight="bold")
@@ -81,14 +109,15 @@ preview_text = "Insert link"
 text_box1.insert(0, preview_text)
 
 # Function to clear the text_box1 widget when clicked
-
-
 def clear_text(event):
     text_box1.delete(0, END)
 
-
 # Bind the clear_text function to the text_box1 widget
 text_box1.bind("<Button-1>", clear_text)
+
+# Function to exit the window
+def exit_window():
+    wn.destroy()
 
 # Button to generate the QR Code
 button = Button(wn, text='EMBED', relief="groove", font=(
@@ -99,6 +128,11 @@ button.place(relx=0.1, rely=0.76, relwidth=0.8, relheight=0.065)
 button_save = Button(wn, text='EXPORT', relief="groove", font=(
     font_normal, 10), bg="#2B7DFA", fg="white", command=saveCode, bd=0)
 button_save.place(relx=0.1, rely=0.84, relwidth=0.8, relheight=0.065)
+
+# Button to quit
+button_exit = Button(wn, text='X', relief="groove", font=(
+    font_normal, 10), bg="#2B7DFA", fg="white", command=exit_window, bd=0)
+button_exit.place(relx=0.9, rely=0, relwidth=0.1, relheight=0.07)
 
 # Runs the window till it is closed manually
 wn.mainloop()
