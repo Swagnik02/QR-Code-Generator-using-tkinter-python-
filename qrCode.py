@@ -5,13 +5,16 @@ import tkinter.font as tkFont
 from tkinter import filedialog
 import pyautogui as pg
 
-
 # Creating the window
 wn = Tk()
 wn.title('URL QR Code Generator')
 wn.geometry('400x616')
 wn.config(bg='white')
 wn.overrideredirect(True)
+
+# Load Roboto font
+font_bold = tkFont.Font(family="Roboto", size=13, weight="bold")
+font_normal = tkFont.Font(family="Roboto", size=12)
 
 # Placing the window in the center of the screen
 def place_center(): 
@@ -22,7 +25,6 @@ def place_center():
     x = int((rx/2) - (500/2))
     y = int((ry/2) - (500/2))
     wn.geometry(f"400x616+{x}+{y}")
-    
 place_center()
 
 # def move_window(event):
@@ -38,14 +40,6 @@ place_center()
 
 # wn.bind("<Button-1>", start_drag)
 # wn.bind("<B1-Motion>", move_window)
-
-# Load Roboto font
-font_bold = tkFont.Font(family="Roboto", size=13, weight="bold")
-font_normal = tkFont.Font(family="Roboto", size=12)
-
-# Creating a label to display the QR code
-qr_label = Label(wn, bg="#2B7DFA")
-qr_label.place(relx=0.1, rely=0.15, relwidth=0.8, relheight=0.47)
 
 # Function to generate the QR code and display it
 def generateCode():
@@ -93,9 +87,25 @@ def saveCode():
 
     # Save the image to the chosen location and name
     img.save(file_path)
+# Function to clear the text_box1 widget when clicked
+def clear_text(event):
+    text_box1.delete(0, END)
 
+# Function to exit the window
+def exit_window():
+    wn.destroy()
+
+# FrontEnd
+# Button to quit
+button_exit = Button(wn, text='X', relief="groove", font=(
+    font_normal, 10), bg="#2B7DFA", fg="white", command=exit_window, bd=0)
+button_exit.place(relx=0.9, rely=0, relwidth=0.1, relheight=0.07)
 
 # Label for the window
+txt_label = Label(wn, bg="#2B7DFA")
+txt_label.place(relx=0.1, rely=0.15, relwidth=0.8, relheight=0.065)
+
+# INPUT_BOX
 # Taking the input of the text or URL to get QR code
 Frame1 = Frame(wn, bg="white")
 Frame1.place(relx=0.1, rely=0.05, relwidth=0.8, relheight=0.1)
@@ -108,17 +118,14 @@ text_box1.place(relx=0.005, rely=0.05, relwidth=0.99, relheight=0.6)
 preview_text = "Insert link"
 text_box1.insert(0, preview_text)
 
-# Function to clear the text_box1 widget when clicked
-def clear_text(event):
-    text_box1.delete(0, END)
-
 # Bind the clear_text function to the text_box1 widget
 text_box1.bind("<Button-1>", clear_text)
 
-# Function to exit the window
-def exit_window():
-    wn.destroy()
+# Creating a label to display the QR code
+qr_label = Label(wn, bg="#2B7DFA")
+qr_label.place(relx=0.1, rely=0.15, relwidth=0.8, relheight=0.47)
 
+# BUTTONS
 # Button to generate the QR Code
 button = Button(wn, text='EMBED', relief="groove", font=(
     font_normal, 10), bg="white", fg="#2B7DFA", command=generateCode, bd=0)
@@ -128,11 +135,6 @@ button.place(relx=0.1, rely=0.76, relwidth=0.8, relheight=0.065)
 button_save = Button(wn, text='EXPORT', relief="groove", font=(
     font_normal, 10), bg="#2B7DFA", fg="white", command=saveCode, bd=0)
 button_save.place(relx=0.1, rely=0.84, relwidth=0.8, relheight=0.065)
-
-# Button to quit
-button_exit = Button(wn, text='X', relief="groove", font=(
-    font_normal, 10), bg="#2B7DFA", fg="white", command=exit_window, bd=0)
-button_exit.place(relx=0.9, rely=0, relwidth=0.1, relheight=0.07)
 
 # Runs the window till it is closed manually
 wn.mainloop()
