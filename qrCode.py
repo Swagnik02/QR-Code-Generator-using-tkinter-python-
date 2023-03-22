@@ -22,24 +22,26 @@ def place_center():
     reso = pg.size()
     rx = reso[0]
     ry = reso[1]
-    x = int((rx/2) - (500/2))
-    y = int((ry/2) - (500/2))
+
+    # To place in the middle 
+    # x = int((rx/2) - (350/2))   #increase the value to move left
+    # y = int((ry/2) - (800/2))   #increase the value to move up
+
+    # To place in the right top corner
+    x = int((rx) - (500))
+    y = int((ry/2) - (900/2))
+
+
     wn.geometry(f"400x616+{x}+{y}")
 place_center()
 
-# def move_window(event):
-#     global x, y
-#     x = event.x_root - init_x
-#     y = event.y_root - init_y
-#     wn.geometry(f"+{x}+{y}")
+# Function to move the window
+def move_window(event):
+    wn.geometry(f'+{event.x_root}+{event.y_root}')
 
-# def start_drag(event):
-#     global init_x, init_y
-#     init_x = event.x_root
-#     init_y = event.y_root
-
-# wn.bind("<Button-1>", start_drag)
-# wn.bind("<B1-Motion>", move_window)
+# Binding the events to the window
+# wn.bind('<Button-1>', move_window)
+# wn.bind('<B1-Motion>', move_window)
 
 # Function to generate the QR code and display it
 def generateCode():
@@ -99,7 +101,7 @@ def exit_window():
 # Button to quit
 button_exit = Button(wn, text='X', relief="groove", font=(
     font_normal, 10), bg="#2B7DFA", fg="white", command=exit_window, bd=0)
-button_exit.place(relx=0.9, rely=0, relwidth=0.1, relheight=0.07)
+button_exit.place(relx=0.9, rely=0, relwidth=0.1, relheight=0.068)
 
 # Label for Heading
 txt_label = Label(wn, text="QR CODE GENERATOR", font=(
