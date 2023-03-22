@@ -102,17 +102,18 @@ button_exit = Button(wn, text='X', relief="groove", font=(
 button_exit.place(relx=0.9, rely=0, relwidth=0.1, relheight=0.07)
 
 # Label for the window
-txt_label = Label(wn, bg="#2B7DFA")
-txt_label.place(relx=0.1, rely=0.15, relwidth=0.8, relheight=0.065)
+txt_label = Label(wn, text="QR CODE GENERATOR", font=(
+    font_normal, 15), bg="#2B7DFA", fg="white")
+txt_label.place(relx=0.108, rely=0.04, relwidth=0.78, relheight=0.068)
 
 # INPUT_BOX
 # Taking the input of the text or URL to get QR code
 Frame1 = Frame(wn, bg="white")
-Frame1.place(relx=0.1, rely=0.05, relwidth=0.8, relheight=0.1)
+Frame1.place(relx=0.1, rely=0.11, relwidth=0.8, relheight=0.12)
 
 text_box1 = Entry(Frame1, highlightbackground="#2B7DFA",
                   highlightthickness=2, relief="groove", font=font_bold, fg="#747474")
-text_box1.place(relx=0.005, rely=0.05, relwidth=0.99, relheight=0.6)
+text_box1.place(relx=0.005, rely=0.11, relwidth=0.99, relheight=0.6)
 
 # Set a preview text
 preview_text = "Insert link"
@@ -123,7 +124,7 @@ text_box1.bind("<Button-1>", clear_text)
 
 # Creating a label to display the QR code
 qr_label = Label(wn, bg="#2B7DFA")
-qr_label.place(relx=0.1, rely=0.15, relwidth=0.8, relheight=0.47)
+qr_label.place(relx=0.1, rely=0.21, relwidth=0.8, relheight=0.47)
 
 # BUTTONS
 # Button to generate the QR Code
