@@ -9,7 +9,7 @@ This is a simple QR code generator application built in Python using the tkinter
 
 ## Use without any setup 
 To use the application without any setup, download the executable file from the following link:
-[Download QR Code Generator](https://github.com/Swagnik02/QR-Code-Generator-using-tkinter-python-/releases/download/v1.0/qrCode.exe)
+[Download QR Code Generator](https://github.com/Swagnik02/QR-Code-Generator-using-tkinter-python-/releases/download/v1.0/qrCode.exe) </break>
 <img src="https://github.com/Swagnik02/QR-Code-Generator-using-tkinter-python-/assets/91018814/a72b31b1-df4d-4539-b50d-854cdf8ff301" alt="QR Code Generator" width="35%">
 
 Once downloaded, simply open the executable file and allow any pop-ups that may appear.
